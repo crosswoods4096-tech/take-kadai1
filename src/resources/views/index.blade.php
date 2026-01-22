@@ -19,10 +19,18 @@
       </div>
       <div class="form__group-content">
         <div class="form__input--text">
-          <input type="text" name="name" placeholder="テスト太郎" value="{{ old('name') }}" />
+          <div class="name">
+            <ul>
+              <li><input type="text" name="last_name" placeholder="山田" value="{{ old('last_name') }}" /></li>
+              <li><input type="text" name="first_name" placeholder="太郎" value="{{ old('first_name') }}" /></li>
+            </ul>
+          </div>
         </div>
         <div class="form__error">
-          @error('name')
+          @error('last_name')
+          {{ $message }}
+          @enderror
+           @error('first_name')
           {{ $message }}
           @enderror
         </div>
