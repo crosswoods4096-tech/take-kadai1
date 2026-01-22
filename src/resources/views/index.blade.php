@@ -28,6 +28,17 @@
         </div>
       </div>
     </div>
+
+    <div class="form__group">
+      <div class="form__group-title">
+        <span class="form__label--item">性別</span>
+        <span class="form__label--required">※</span>
+      </div> 
+          <input type="radio" name="gender" value="male" checked/>男性
+          <input type="radio" name="gender" value="female" />女性
+          <input type="radio" name="gender" value="others" />その他
+     </div>
+
     <div class="form__group">
       <div class="form__group-title">
         <span class="form__label--item">メールアドレス</span>
@@ -60,6 +71,24 @@
         </div>
       </div>
     </div>
+
+    <div class="form__group">
+      <div class="form__group-title">
+        <span class="form__label--item">住所</span>
+        <span class="form__label--required">必須</span>
+      </div>
+      <div class="form__group-content">
+        <div class="form__input--text">
+          <input type="text" name="address" placeholder="東京都葛飾区" value="{{ old('address') }}" />
+        </div>
+        <div class="form__error">
+          @error('address')
+          {{ $message }}
+          @enderror
+        </div>
+      </div>
+    </div>
+
     <div class="form__group">
       <div class="form__group-title">
         <span class="form__label--item">お問い合わせ内容</span>

@@ -26,8 +26,8 @@ class ContactRequest extends FormRequest
         return [
            'name' => 'required|string|max:255',
          'email' => 'required|string|email|max:255',
-         'tel' => 'required|numeric|digits_between:10,11'
-         
+         'tel' => 'required|numeric|digits_between:10,11',
+         'address' => 'required|string|max:255',
         ];
     }
     public function messages()
@@ -43,6 +43,9 @@ class ContactRequest extends FormRequest
              'tel.required' => '電話番号を入力してください',
              'tel.numeric' => '電話番号を数値で入力してください',
              'tel.digits_between' => '電話番号を10桁から11桁の間で入力してください',
+             'address.required' => '住所を入力してください',
+             'address.string' => '住所を文字列で入力してください',
+             'address.max' => '住所を255文字以下で入力してください',
          ];
      }
 }
