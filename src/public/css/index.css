@@ -18,8 +18,10 @@
   list-style-type: none;
   text-align: center;
 }
-.ul {
+.tel ul {
+  display: flex;
   width: 150px; 
+  list-style-type: none;
 }
 .form {
   margin: 0 auto;

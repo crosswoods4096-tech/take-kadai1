@@ -12,7 +12,9 @@ class Contact extends Model
          'last_name',
          'first_name',
          'email',
-         'tel',
+         'tel_1',
+         'tel_2',
+         'tel_3',
          'address',
          'content'
      ];

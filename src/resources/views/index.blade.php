@@ -70,10 +70,22 @@
       </div>
       <div class="form__group-content">
         <div class="form__input--text">
-          <input type="tel" name="tel" placeholder="09012345678" value="{{ old('tel') }}" />
+          <div class="tel">
+            <ul>
+              <li><input type="tel" name="tel_1" placeholder="090" value="{{ old('tel_1') }}" /></li>
+              <li><input type="tel" name="tel_2" placeholder="1234" value="{{ old('tel_2') }}" /></li>
+              <li><input type="tel" name="tel_3" placeholder="5678" value="{{ old('tel_3') }}" /></li>
+            </ul>
+          </div>
         </div>
         <div class="form__error">
-          @error('tel')
+          @error('tel_1')
+          {{ $message }}
+          @enderror
+          @error('tel_2')
+          {{ $message }}
+          @enderror 
+          @error('tel_3')
           {{ $message }}
           @enderror
         </div>
