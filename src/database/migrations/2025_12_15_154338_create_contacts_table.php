@@ -21,7 +21,7 @@ class CreateContactsTable extends Migration
             $table->string('tel_1', 3);
             $table->string('tel_2', 4);
             $table->string('tel_3', 4);
-            $table->text('content')->nullable();
+            $table->text('content');
             $table->timestamps();
         });
     }
