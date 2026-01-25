@@ -17,6 +17,7 @@ class Contact extends Model
          'tel_2',
          'tel_3',
          'address',
+         'kind',
          'content',
      ];
 }
