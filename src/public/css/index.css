@@ -12,15 +12,15 @@
 
 .name ul {
   display: flex;
-  width: 150px;
-  margin: auto;
+  max-width: 50px;
+  margin: 10px;
   padding: auto;
   list-style-type: none;
-  text-align: center;
+  text-align: left;
 }
 .tel ul {
   display: flex;
-  width: 150px; 
+  width: 50px; 
   list-style-type: none;
 }
 .form {

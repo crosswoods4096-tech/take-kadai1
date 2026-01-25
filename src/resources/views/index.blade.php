@@ -122,6 +122,20 @@
 
     <div class="form__group">
       <div class="form__group-title">
+        <span class="form__label--item">お問い合わせの種類</span>
+        <span class="form__label--required">必須</span>
+      </div>
+      <select name="kind" input type="text" placeholder="選択してください">
+        <option value="1.商品のお届けについて">商品のお届けについて </option>
+        <option value="2。商品の交換について">商品の交換について</option>
+        <option value="3。商品トラブル">商品トラブル</option>
+        <option value="4。ショップへのお問い合わせ">ショップへのお問い合わせ</option>
+        <option value="5。その他">その他</option>
+      </select>
+    </div>
+
+    <div class="form__group">
+      <div class="form__group-title">
         <span class="form__label--item">お問い合わせ内容</span>
       </div>
       <div class="form__group-content">
