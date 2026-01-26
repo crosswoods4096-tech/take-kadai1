@@ -51,7 +51,8 @@
 }
 
 .confirm-table__text input {
-  width: 400%;
+  width: 1000%;
+  margin: auto;
   outline: none;
   border: none;
 }

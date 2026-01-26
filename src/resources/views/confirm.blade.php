@@ -17,12 +17,12 @@
         <tr class="confirm-table__row">
           <th class="confirm-table__header">お名前</th>
           <td class="confirm-table__text">
-            <td class="name">
+            <div class="name">
               <ul>
                 <li><input type="text" name="last_name" value="{{ $contact['last_name'] }}" readonly /></li>
                 <li><input type="text" name="first_name" value="{{ $contact['first_name'] }}" readonly /></li>
               </ul>
-            </td>
+            </div>
           </td>
         </tr>
 
@@ -43,13 +43,13 @@
         <tr class="confirm-table__row">
           <th class="confirm-table__header">電話番号</th>
           <td class="confirm-table__text">
-            <td class="tel">
+            <div class="tel">
               <ul>
                 <li><input type="tel_1" name="tel_1" value="{{ $contact['tel_1'] }}" readonly /></li>
                 <li><input type="tel_2" name="tel_2" value="{{ $contact['tel_2'] }}" readonly /></li>
                 <li><input type="tel_3" name="tel_3" value="{{ $contact['tel_3'] }}" readonly /></li>
               </ul>
-            </td>
+            </div>
           </td>
         </tr>
 
