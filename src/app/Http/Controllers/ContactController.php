@@ -8,20 +8,19 @@ use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
-    public function index()
+  public function index()
   {
     return view('index');
   }
-    public function confirm(ContactRequest $request)
+  public function confirm(ContactRequest $request)
   {
-        $contact = $request->only(['last_name','first_name','gender', 'email', 'tel_1','tel_2', 'tel_3','address','building','kind', 'content']);
-        return view('confirm', compact('contact'));
+    $contact = new Contact($request->all());
+    return view('confirm', compact('contact'));
   }
-    public function store(ContactRequest $request)
+  public function store(ContactRequest $request)
   {
-        $contact = $request->only(['last_name','first_name','gender', 'email', 'tel_1','tel_2','tel_3','address','building','kind','content']);
-        Contact::create($contact);
-        return view('thanks');
-
+    $contact = $request->only(['last_name', 'first_name', 'gender', 'email', 'tel_1', 'tel_2', 'tel_3', 'address', 'building', 'kind', 'content']);
+    Contact::create($contact);
+    return view('thanks');
   }
 }
