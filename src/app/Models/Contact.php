@@ -13,11 +13,13 @@ class Contact extends Model
         'first_name',
         'gender',
         'email',
+        'tel',
         'tel_1',
         'tel_2',
         'tel_3',
         'address',
-        'kind',
+        'building',
+        'category_id',
         'content',
     ];
     public function getGenderLabelAttribute()
@@ -27,5 +29,9 @@ class Contact extends Model
             2 => '女性',
             3 => 'その他',
         ][$this->gender] ?? '';
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
