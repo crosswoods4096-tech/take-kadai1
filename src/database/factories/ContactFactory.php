@@ -14,7 +14,7 @@ class ContactFactory extends Factory
      */
     public function definition()
     {
-        $buildings = ['サンハイツ', 'メゾンK', 'コーポさくら', 'グリーンハイム', 'パークサイド'];
+
         return [
             'last_name' => $this->faker->lastName,
             'first_name' => $this->faker->firstName,
@@ -22,7 +22,7 @@ class ContactFactory extends Factory
             'email' => $this->faker->safeEmail(),
             'tel' => $this->faker->numerify('0##########'),
             'address' => $this->faker->prefecture . $this->faker->city . $this->faker->streetAddress,
-            'building' => $this->faker->randomElement($buildings) . $this->faker->numberBetween(101, 505),
+            'building' => $this->faker->secondaryAddress(),
             'category_id' => $this->faker->numberBetween(1, 5),
             'content' => $this->faker->randomElement([
                 '商品の詳細について教えてください。',
