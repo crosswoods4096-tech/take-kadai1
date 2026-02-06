@@ -9,10 +9,10 @@
     <form action="{{ route('admin.contacts.index') }}" method="GET" class="mb-4">
         <div class="row g-3">
 
-            {{-- 名前 --}}
+            {{-- 名前・メールアドレス（統合検索） --}}
             <div class="col-auto">
-                <label class="form-label">名前</label>
-                <input type="text" name="name" value="{{ request('name') }}" class="form-control">
+                <label class="form-label">名前 / メールアドレス</label>
+                <input type="text" name="keyword" value="{{ request('keyword') }}" class="form-control">
             </div>
 
             {{-- 性別 --}}
@@ -26,12 +26,6 @@
                 </select>
             </div>
 
-            {{-- メールアドレス --}}
-            <div class="col-auto">
-                <label class="form-label">メールアドレス</label>
-                <input type="text" name="email" value="{{ request('email') }}" class="form-control">
-            </div>
-
             {{-- お問い合わせ種類 --}}
             <div class="col-auto">
                 <label class="form-label">お問い合わせ種類</label>
@@ -43,12 +37,6 @@
                     <option value="4" @selected(request('type')=='4' )>ショップへのお問い合わせ</option>
                     <option value="5" @selected(request('type')=='5' )>その他</option>
                 </select>
-            </div>
-
-            {{-- お問い合わせ内容 --}}
-            <div class="col-auto">
-                <label class="form-label">内容</label>
-                <input type="text" name="content" value="{{ request('content') }}" class="form-control">
             </div>
 
             {{-- 日付 --}}
@@ -100,7 +88,7 @@
 
     {{-- ページネーション --}}
     <div class="mt-3">
-        {{ $contacts->links() }}
+        {{ $contacts->links('pagination::bootstrap-4') }}
     </div>
 
 </div>

@@ -12,14 +12,15 @@ class AdminController extends Controller
     {
         $query = Contact::query();
 
-        // 名前（姓・名・フルネーム・部分一致）
-        if ($request->filled('name')) {
-            $name = $request->name;
+        // 名前・メールアドレス（統合検索）
+        if ($request->filled('keyword')) {
+            $keyword = $request->keyword;
 
-            $query->where(function ($q) use ($name) {
-                $q->where('last_name', 'LIKE', "%{$name}%")
-                    ->orWhere('first_name', 'LIKE', "%{$name}%")
-                    ->orWhereRaw("CONCAT(last_name, first_name) LIKE ?", ["%{$name}%"]);
+            $query->where(function ($q) use ($keyword) {
+                $q->where('last_name', 'LIKE', "%{$keyword}%")
+                    ->orWhere('first_name', 'LIKE', "%{$keyword}%")
+                    ->orWhereRaw("CONCAT(last_name, first_name) LIKE ?", ["%{$keyword}%"])
+                    ->orWhere('email', 'LIKE', "%{$keyword}%");
             });
         }
 
@@ -28,26 +29,10 @@ class AdminController extends Controller
             $q->where('gender', $gender);
         });
 
-        // メールアドレス（部分一致）
-        $query->when($request->email, function ($q, $email) {
-            $q->where('email', 'LIKE', "%{$email}%");
-        });
-
         // お問い合わせ種類
         $query->when($request->type, function ($q, $type) {
             $q->where('type', $type);
         });
-
-        // 内容（単語ごと AND 検索）
-        if ($request->filled('content')) {
-            $words = preg_split('/\s+/u', $request->content);
-
-            $query->where(function ($q) use ($words) {
-                foreach ($words as $word) {
-                    $q->where('content', 'LIKE', "%{$word}%");
-                }
-            });
-        }
 
         // 日付（created_at の日付一致）
         $query->when($request->date, function ($q, $date) {
