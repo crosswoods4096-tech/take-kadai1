@@ -23,7 +23,8 @@ class ContactFactory extends Factory
             'tel' => $this->faker->numerify('0##########'),
             'address' => $this->faker->prefecture . $this->faker->city . $this->faker->streetAddress,
             'building' => $this->faker->secondaryAddress(),
-            'category_id' => $this->faker->numberBetween(1, 5),
+            // 'category_id' => $this->faker->numberBetween(1, 5),
+            'type' => $this->faker->numberBetween(1, 5),
             'content' => $this->faker->randomElement([
                 '商品の詳細について教えてください。',
                 '注文内容を変更したいのですが可能でしょうか。',

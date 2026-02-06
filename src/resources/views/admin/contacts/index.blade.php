@@ -32,10 +32,29 @@
                 <input type="text" name="email" value="{{ request('email') }}" class="form-control">
             </div>
 
+            {{-- お問い合わせ種類 --}}
+            <div class="col-auto">
+                <label class="form-label">お問い合わせ種類</label>
+                <select name="type" class="form-select">
+                    <option value="">指定なし</option>
+                    <option value="1" @selected(request('type')=='1' )>商品のお届けについて</option>
+                    <option value="2" @selected(request('type')=='2' )>商品の交換について</option>
+                    <option value="3" @selected(request('type')=='3' )>商品トラブル</option>
+                    <option value="4" @selected(request('type')=='4' )>ショップへのお問い合わせ</option>
+                    <option value="5" @selected(request('type')=='5' )>その他</option>
+                </select>
+            </div>
+
             {{-- お問い合わせ内容 --}}
             <div class="col-auto">
                 <label class="form-label">内容</label>
                 <input type="text" name="content" value="{{ request('content') }}" class="form-control">
+            </div>
+
+            {{-- 日付 --}}
+            <div class="col-auto">
+                <label class="form-label">日付</label>
+                <input type="date" name="date" value="{{ request('date') }}" class="form-control">
             </div>
 
             {{-- 検索ボタン --}}
