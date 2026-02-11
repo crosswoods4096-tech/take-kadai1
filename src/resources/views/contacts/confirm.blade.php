@@ -98,23 +98,23 @@
       </table>
     </div>
 
-    <div class="form__group">
-      <div class="form__group-title">
-        <span class="form__label--item">どこで知りましたか</span>
-      </div>
-      <div class="form__group-content">
+    <tr class="confirm-table__row">
+      <th class="confirm-table__header">どこで知りましたか</th>
+      <td class="confirm-table__text">
         @if (!empty($channels))
-        <ul>
+        <div class="channels-wrapper" style="display: flex; flex-wrap: wrap; gap: 10px;">
           @foreach ($channels as $channel)
-          <li>{{ $channel->name }}</li>
+          <div class="channel-item" style="padding: 6px 12px; background: #f0f0f0; border-radius: 4px;">
+            {{ $channel->name }}
+          </div>
           <input type="hidden" name="channels[]" value="{{ $channel->id }}">
           @endforeach
-        </ul>
+        </div>
         @else
         <p>未選択</p>
         @endif
-      </div>
-    </div>
+      </td>
+    </tr>
 
     <div class="form__button">
       <button class="form__button-submit" type="submit">送信</button>

@@ -1,79 +1,91 @@
-
 .confirm__content {
-  margin: 0 auto;
-  padding: 30px 15px;
-  max-width: 1230px;
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
 }
 
 .confirm__heading {
-  margin-bottom: 40px;
-  text-align: center;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
 .form {
-  margin: 0 auto;
-  width: 70%;
+    margin: 0 auto;
+    width: 70%;
 }
 
 .name ul {
- display: flex;
- margin: auto;
- padding: auto;
- list-style-type: none; 
+    display: flex;
+    margin: auto;
+    padding: auto;
+    list-style-type: none;
 }
 
 .tel ul {
- display: flex;
- margin: auto;
- padding: auto;
- list-style-type: none; 
+    display: flex;
+    margin: auto;
+    padding: auto;
+    list-style-type: none;
 }
 
 .confirm-table {
-  border: 1px solid #ddd;
+    border: 1px solid #ddd;
 }
 
 .confirm-table__inner {
-  width: 100%;
+    width: 100%;
 }
 
 .confirm-table__header {
-  padding: 15px;
-  width: 20%;
-  border-bottom: 1px solid #ddd;
-  background-color: #eee;
-  font-weight: bold;
+    padding: 15px;
+    width: 20%;
+    border-bottom: 1px solid #ddd;
+    background-color: #eee;
+    font-weight: bold;
 }
 
 .confirm-table__text {
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
 }
 
 .confirm-table__text input {
-  width: 1000%;
-  margin: auto;
-  outline: none;
-  border: none;
+    width: 1000%;
+    margin: auto;
+    outline: none;
+    border: none;
 }
 
 .confirm-table__row:last-child .confirm-table__header,
 .confirm-table__row:last-child .confirm-table__text {
-  border-bottom-width: 0;
+    border-bottom-width: 0;
 }
 
 .form__button {
-  margin-top: 30px;
-  text-align: center;
+    margin-top: 30px;
+    text-align: center;
 }
 
 .form__button-submit {
-  padding: 10px;
-  width: 30%;
-  height: 50px;
-  border: none;
-  border-radius: 3px;
-  background: #000;
-  color: #fff;
-  cursor: pointer;
+    padding: 10px;
+    width: 30%;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
+.channels-list {
+    display: flex;
+    gap: 16px; /* 項目の間隔 */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.channels-item {
+    padding: 4px 8px;
+    background: #f2f2f2;
+    border-radius: 4px;
 }
