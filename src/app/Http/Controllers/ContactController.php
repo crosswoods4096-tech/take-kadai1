@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Channel;
+
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Http\Requests\ContactRequest;
@@ -16,36 +18,40 @@ class ContactController extends Controller
     return view('index', compact('categories'));
   }
 
-  public function confirm(ContactRequest $request)
+  public function confirm(StoreContactRequest $request)
   {
-    $contact = new Contact($request->all());
-    // dd($contact);
-    $category = Category::find($request->category_id);
-    return view('confirm', compact('contact', 'category'));
+    $selectedChannels = [];
+
+    if ($request->filled('channels')) {
+      $selectedChannels = Channel::whereIn('id', $request->channels)->get();
+    }
+
+    return view('contacts.confirm', [
+      'inputs'   => $request->all(),
+      'channels' => $selectedChannels,
+    ]);
   }
 
   public function store(StoreContactRequest $request)
   {
     $contact = Contact::create([
-      'last_name' => $request->last_name,
-      'first_name' => $request->first_name,
-      'gender' => $request->gender,
-      'email'   => $request->email,
-      'tel' => $request->tel_1 . $request->tel_2 . $request->tel_3,
-      'address' => $request->address,
-      'building' => $request->building,
+      'last_name'   => $request->last_name,
+      'first_name'  => $request->first_name,
+      'gender'      => $request->gender,
+      'email'       => $request->email,
+      'tel'         => $request->tel_1 . $request->tel_2 . $request->tel_3,
+      'address'     => $request->address,
+      'building'    => $request->building,
       'category_id' => $request->category_id,
-      'content' => $request->content,
+      'content'     => $request->content,
     ]);
 
     if ($request->filled('channels')) {
       $contact->channels()->sync($request->channels);
     }
 
-    return redirect()->route('contacts.index')
-      ->with('success', 'お問い合わせを受け付けました。');
+    return view('contacts.thanks');
   }
-
   // public function store(Request $request)
   // {
   //   $contact = [

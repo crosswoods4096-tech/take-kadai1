@@ -18,7 +18,8 @@ use App\Http\Controllers\AdminAuthController;
 
 
 Route::get('/', [ContactController::class, 'index'])->name('input');
-Route::post('/contacts/confirm', [ContactController::class, 'confirm']);
+Route::post('/contacts/confirm', [ContactController::class, 'confirm'])
+    ->name('contacts.confirm');
 Route::post('/contacts', [ContactController::class, 'store']);
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.contacts.index');
