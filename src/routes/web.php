@@ -17,10 +17,12 @@ use App\Http\Controllers\AdminAuthController;
 */
 
 
-Route::get('/', [ContactController::class, 'index']);
+Route::get('/', [ContactController::class, 'index'])->name('input');
 Route::post('/contacts/confirm', [ContactController::class, 'confirm']);
 Route::post('/contacts', [ContactController::class, 'store']);
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.contacts.index');
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.contacts.index');
+});
 
 Route::post('/register', [AdminAuthController::class, 'register'])->name('admin.register');
 Route::post('/login',    [AdminAuthController::class, 'login'])->name('admin.login');

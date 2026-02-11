@@ -27,7 +27,7 @@ class AdminAuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard'); // 任意の遷移先に変更
+        return redirect()->route('admin.contacts.index'); // 任意の遷移先に変更
     }
 
     /**
@@ -42,7 +42,7 @@ class AdminAuthController extends Controller
 
         if (Auth::attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard'); // 任意の遷移先に変更
+            return redirect()->route('admin.contacts.index'); // 任意の遷移先に変更
         }
 
         return back()->withErrors([

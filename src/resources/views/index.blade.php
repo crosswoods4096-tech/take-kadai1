@@ -152,6 +152,39 @@
       </div>
     </div>
 
+    <div class="mb-3">
+      <label class="form-label">どこで知りましたか（複数選択可）</label>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="channels[]" value="1" id="channel1">
+        <label class="form-check-label" for="channel1">自社サイト</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="channels[]" value="2" id="channel2">
+        <label class="form-check-label" for="channel2">検索エンジン</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="channels[]" value="3" id="channel3">
+        <label class="form-check-label" for="channel3">SNS</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="channels[]" value="4" id="channel4">
+        <label class="form-check-label" for="channel4">テレビ・新聞</label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="channels[]" value="5" id="channel5">
+        <label class="form-check-label" for="channel5">友人・知人</label>
+      </div>
+
+      @error('channels')
+      <div class="text-danger">{{ $message }}</div>
+      @enderror
+    </div>
+
     <div class="form__button">
       <button class="form__button-submit" type="submit">送信</button>
     </div>
