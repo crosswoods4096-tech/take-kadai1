@@ -88,37 +88,42 @@
           </td>
         </tr>
 
-        <tr class="confirm-table__row">
-          <th class="confirm-table__header">お問い合わせ内容</th>
-          <td class="confirm-table__text">
-            <input type="text" name="content" value="{{ $inputs['content'] }}" readonly />
-          </td>
-        </tr>
+        <div class="confirm-table">
+          <table class="confirm-table__inner">
 
-      </table>
-    </div>
+            {{-- ここまでが既存の行 --}}
+            <tr class="confirm-table__row">
+              <th class="confirm-table__header">お問い合わせ内容</th>
+              <td class="confirm-table__text">
+                <input type="text" name="content" value="{{ $inputs['content'] }}" readonly />
+              </td>
+            </tr>
 
-    <tr class="confirm-table__row">
-      <th class="confirm-table__header">どこで知りましたか</th>
-      <td class="confirm-table__text">
-        @if (!empty($channels))
-        <div class="channels-wrapper" style="display: flex; flex-wrap: wrap; gap: 10px;">
-          @foreach ($channels as $channel)
-          <div class="channel-item" style="padding: 6px 12px; background: #f0f0f0; border-radius: 4px;">
-            {{ $channel->name }}
-          </div>
-          <input type="hidden" name="channels[]" value="{{ $channel->id }}">
-          @endforeach
+            {{-- ★ ここに移動させる！ --}}
+            <tr class="confirm-table__row">
+              <th class="confirm-table__header">どこで知りましたか</th>
+              <td class="confirm-table__text">
+                @if (!empty($channels))
+                <div class="channels-wrapper" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                  @foreach ($channels as $channel)
+                  <div class="channel-item" style="padding: 6px 12px; background: #f0f0f0; border-radius: 4px;">
+                    {{ $channel->name }}
+                  </div>
+                  <input type="hidden" name="channels[]" value="{{ $channel->id }}">
+                  @endforeach
+                </div>
+                @else
+                <p>未選択</p>
+                @endif
+              </td>
+            </tr>
+
+          </table>
         </div>
-        @else
-        <p>未選択</p>
-        @endif
-      </td>
-    </tr>
 
-    <div class="form__button">
-      <button class="form__button-submit" type="submit">送信</button>
-    </div>
+        <div class="form__button">
+          <button class="form__button-submit" type="submit">送信</button>
+        </div>
 
   </form>
 </div>
