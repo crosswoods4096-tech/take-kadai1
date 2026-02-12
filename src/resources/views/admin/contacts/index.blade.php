@@ -62,7 +62,9 @@
                 <th>名前</th>
                 <th>性別</th>
                 <th>メールアドレス</th>
+                <th>お問い合わせ種類</th>
                 <th>内容</th>
+                <th>どこで知りましたか</th>
                 <th>登録日</th>
             </tr>
         </thead>
@@ -75,7 +77,20 @@
                 <td>{{ $contact->gender == 1 ? '男性' : ($contact->gender == 2 ? '女性' : 'その他') }}
                 </td>
                 <td>{{ $contact->email }}</td>
+                {{-- ★ お問い合わせ種類 --}}
+                <td>{{ $contact->category->name ?? '未設定' }}</td>
                 <td>{{ Str::limit($contact->content, 30) }}</td>
+                {{-- ★ どこで知りましたか --}}
+                <td>
+                    @if ($contact->channels->isNotEmpty())
+                    @foreach ($contact->channels as $channel)
+                    <span class="badge bg-secondary">{{ $channel->name }}</span>
+                    @endforeach
+                    @else
+                    <span class="text-muted">未選択</span>
+                    @endif
+                </td>
+
                 <td>{{ $contact->created_at->format('Y-m-d') }}</td>
             </tr>
             @empty

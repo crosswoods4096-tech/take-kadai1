@@ -12,4 +12,8 @@ class Channel extends Model
     {
         return $this->belongsToMany(Contact::class, 'channel_contact');
     }
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class);
+    }
 }

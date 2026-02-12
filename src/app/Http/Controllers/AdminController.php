@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Contact::query();
+        $query = Contact::with(['category', 'channels']);
 
         // 名前・メールアドレス（統合検索）
         if ($request->filled('keyword')) {

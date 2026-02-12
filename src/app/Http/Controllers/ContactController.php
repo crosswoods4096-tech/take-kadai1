@@ -52,6 +52,7 @@ class ContactController extends Controller
 
     return view('contacts.thanks');
   }
+  
   // public function store(Request $request)
   // {
   //   $contact = [
