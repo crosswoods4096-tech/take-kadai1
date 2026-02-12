@@ -121,21 +121,25 @@
       </div>
     </div>
 
-    <select name="category_id">
-      <option value="" disabled selected>選択してください</option>
-      @foreach ($categories as $category)
-      <option value="{{ $category->id }}">
-        {{ $category->name }}
-      </option>
-      @endforeach
-    </select>
+    <div class="form__group">
+      <div class="form__group-title">
+        <span class="form__label--item">問い合わせの種類</span>
+      </div>
+      <select name="category_id">
+        <option value="" disabled selected>選択してください</option>
+        @foreach ($categories as $category)
+        <option value="{{ $category->id }}">
+          {{ $category->name }}
+        </option>
+        @endforeach
+      </select>
 
-    <div class="form__error">
-      @error('category_id')
-      {{ $message }}
-      @enderror
+      <div class="form__error">
+        @error('category_id')
+        {{ $message }}
+        @enderror
+      </div>
     </div>
-
 
     <div class="form__group">
       <div class="form__group-title">

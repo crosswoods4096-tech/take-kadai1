@@ -18,7 +18,7 @@ class ContactController extends Controller
     return view('index', compact('categories'));
   }
 
-  public function confirm(StoreContactRequest $request)
+  public function confirm(ContactRequest $request)
   {
     $selectedChannels = [];
 
@@ -32,7 +32,7 @@ class ContactController extends Controller
     ]);
   }
 
-  public function store(StoreContactRequest $request)
+  public function store(ContactRequest $request)
   {
     $contact = Contact::create([
       'last_name'   => $request->last_name,
