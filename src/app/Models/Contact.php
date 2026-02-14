@@ -21,6 +21,7 @@ class Contact extends Model
         'building',
         'category_id',
         'content',
+        'image',
     ];
     public function getGenderLabelAttribute()
     {

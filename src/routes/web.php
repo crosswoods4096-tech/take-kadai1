@@ -24,7 +24,6 @@ Route::post('/contacts', [ContactController::class, 'store']);
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.contacts.index');
 });
-
 Route::post('/register', [AdminAuthController::class, 'register'])->name('admin.register');
 Route::post('/login',    [AdminAuthController::class, 'login'])->name('admin.login');
 Route::post('/logout',   [AdminAuthController::class, 'logout'])->name('admin.logout');

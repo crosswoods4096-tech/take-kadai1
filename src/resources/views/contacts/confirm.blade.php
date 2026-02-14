@@ -10,7 +10,7 @@
     <h2>お問い合わせ内容確認</h2>
   </div>
 
-  <form class="form" action="{{ url('/contacts') }}" method="post" novalidate>
+  <form class="form" action="{{ url('/contacts') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     @php
@@ -23,107 +23,102 @@
     $category = \App\Models\Category::find($inputs['category_id']);
     @endphp
 
-    <div class="confirm-table">
-      <table class="confirm-table__inner">
+    <table class="confirm-table__inner">
 
-        <tr class="confirm-table__row">
-          <th class="confirm-table__header">お名前</th>
-          <td class="confirm-table__text">
-            <div class="name">
-              <ul>
-                <li><input type="text" name="last_name" value="{{ $inputs['last_name'] }}" readonly /></li>
-                <li><input type="text" name="first_name" value="{{ $inputs['first_name'] }}" readonly /></li>
-              </ul>
-            </div>
-          </td>
-        </tr>
+      <tr>
+        <th>お名前</th>
+        <td>
+          {{ $inputs['last_name'] }} {{ $inputs['first_name'] }}
+          <input type="hidden" name="last_name" value="{{ $inputs['last_name'] }}">
+          <input type="hidden" name="first_name" value="{{ $inputs['first_name'] }}">
+        </td>
+      </tr>
 
-        <tr class="confirm-table__row">
-          <th class="confirm-table__header">性別</th>
-          <td class="confirm-table__text">
-            <input type="text" name="gender_label" value="{{ $genderLabel }}" readonly />
-            <input type="hidden" name="gender" value="{{ $inputs['gender'] }}" />
-          </td>
-        </tr>
+      <tr>
+        <th>性別</th>
+        <td>
+          {{ $genderLabel }}
+          <input type="hidden" name="gender" value="{{ $inputs['gender'] }}">
+        </td>
+      </tr>
 
-        <tr class="confirm-table__row">
-          <th class="confirm-table__header">メールアドレス</th>
-          <td class="confirm-table__text">
-            <input type="email" name="email" value="{{ $inputs['email'] }}" readonly />
-          </td>
-        </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td>
+          {{ $inputs['email'] }}
+          <input type="hidden" name="email" value="{{ $inputs['email'] }}">
+        </td>
+      </tr>
 
-        <tr class="confirm-table__row">
-          <th class="confirm-table__header">電話番号</th>
-          <td class="confirm-table__text">
-            <div class="tel">
-              <ul>
-                <li><input type="text" name="tel_1" value="{{ $inputs['tel_1'] }}" readonly /></li>
-                <li><input type="text" name="tel_2" value="{{ $inputs['tel_2'] }}" readonly /></li>
-                <li><input type="text" name="tel_3" value="{{ $inputs['tel_3'] }}" readonly /></li>
-              </ul>
-            </div>
-          </td>
-        </tr>
+      <tr>
+        <th>電話番号</th>
+        <td>
+          {{ $inputs['tel_1'] }}-{{ $inputs['tel_2'] }}-{{ $inputs['tel_3'] }}
+          <input type="hidden" name="tel_1" value="{{ $inputs['tel_1'] }}">
+          <input type="hidden" name="tel_2" value="{{ $inputs['tel_2'] }}">
+          <input type="hidden" name="tel_3" value="{{ $inputs['tel_3'] }}">
+        </td>
+      </tr>
 
-        <tr class="confirm-table__row">
-          <th class="confirm-table__header">住所</th>
-          <td class="confirm-table__text">
-            <input type="text" name="address" value="{{ $inputs['address'] }}" readonly />
-          </td>
-        </tr>
+      <tr>
+        <th>住所</th>
+        <td>
+          {{ $inputs['address'] }}
+          <input type="hidden" name="address" value="{{ $inputs['address'] }}">
+        </td>
+      </tr>
 
-        <tr class="confirm-table__row">
-          <th class="confirm-table__header">建物</th>
-          <td class="confirm-table__text">
-            <input type="text" name="building" value="{{ $inputs['building'] }}" readonly />
-          </td>
-        </tr>
+      <tr>
+        <th>建物</th>
+        <td>
+          {{ $inputs['building'] }}
+          <input type="hidden" name="building" value="{{ $inputs['building'] }}">
+        </td>
+      </tr>
 
-        <tr class="confirm-table__row">
-          <th class="confirm-table__header">お問い合わせの種類</th>
-          <td class="confirm-table__text">
-            <input type="text" value="{{ $category->name }}" readonly />
-            <input type="hidden" name="category_id" value="{{ $inputs['category_id'] }}">
-          </td>
-        </tr>
+      <tr>
+        <th>お問い合わせの種類</th>
+        <td>
+          {{ $category->name }}
+          <input type="hidden" name="category_id" value="{{ $inputs['category_id'] }}">
+        </td>
+      </tr>
 
-        <div class="confirm-table">
-          <table class="confirm-table__inner">
+      <tr>
+        <th>お問い合わせ内容</th>
+        <td>
+          {{ $inputs['content'] }}
+          <input type="hidden" name="content" value="{{ $inputs['content'] }}">
+        </td>
+      </tr>
 
-            {{-- ここまでが既存の行 --}}
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">お問い合わせ内容</th>
-              <td class="confirm-table__text">
-                <input type="text" name="content" value="{{ $inputs['content'] }}" readonly />
-              </td>
-            </tr>
+      <tr>
+        <th>どこで知りましたか</th>
+        <td>
+          @foreach ($channels as $channel)
+          <div>{{ $channel->name }}</div>
+          <input type="hidden" name="channels[]" value="{{ $channel->id }}">
+          @endforeach
+        </td>
+      </tr>
 
-            {{-- ★ ここに移動させる！ --}}
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">どこで知りましたか</th>
-              <td class="confirm-table__text">
-                @if (!empty($channels))
-                <div class="channels-wrapper" style="display: flex; flex-wrap: wrap; gap: 10px;">
-                  @foreach ($channels as $channel)
-                  <div class="channel-item" style="padding: 6px 12px; background: #f0f0f0; border-radius: 4px;">
-                    {{ $channel->name }}
-                  </div>
-                  <input type="hidden" name="channels[]" value="{{ $channel->id }}">
-                  @endforeach
-                </div>
-                @else
-                <p>未選択</p>
-                @endif
-              </td>
-            </tr>
+      <tr>
+        <th>画像</th>
+        <td>
+          @if (!empty($inputs['image']))
+          <img src="{{ asset('storage/' . $inputs['image']) }}" width="200">
+          <input type="hidden" name="image" value="{{ $inputs['image'] }}">
+          @else
+          なし
+          @endif
+        </td>
+      </tr>
 
-          </table>
-        </div>
+    </table>
 
-        <div class="form__button">
-          <button class="form__button-submit" type="submit">送信</button>
-        </div>
+    <div class="form__button">
+      <button class="form__button-submit" type="submit">送信</button>
+    </div>
 
   </form>
 </div>

@@ -190,6 +190,16 @@
       @enderror
     </div>
 
+    <div class="form__group">
+      <div class="form__group-title">
+        <span class="form__label--item">画像ファイル</span>
+      </div>
+      <div class="form__group-content">
+        <input type="file" name="image">
+      </div>
+    </div>
+
+
     <div class="form__button">
       <button class="form__button-submit" type="submit">送信</button>
     </div>
