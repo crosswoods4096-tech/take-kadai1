@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Channel;
-
-
+use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Http\Requests\ContactRequest;
 use App\Models\Category;
@@ -46,7 +45,7 @@ class ContactController extends Controller
     ]);
   }
 
-  public function store(ContactRequest $request)
+  public function store(Request $request)
   {
     // 画像パス（confirm で保存したもの）を取得
     $imagePath = $request->image ?? null;
