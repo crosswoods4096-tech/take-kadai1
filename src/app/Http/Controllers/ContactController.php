@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Channel;
 
-use Illuminate\Http\Request;
+
 use App\Models\Contact;
 use App\Http\Requests\ContactRequest;
 use App\Models\Category;
-use App\Http\Requests\StoreContactRequest;
+
 
 class ContactController extends Controller
 {
   public function index()
   {
     $categories = Category::all();
-    return view('index', compact('categories'));
+    return view('contacts.index', compact('categories'));
   }
 
   public function confirm(ContactRequest $request)
@@ -38,6 +38,7 @@ class ContactController extends Controller
       // 確認画面で表示するためにパスを inputs に追加
       $inputs['image'] = $path;
     }
+
 
     return view('contacts.confirm', [
       'inputs'   => $inputs,
@@ -69,7 +70,7 @@ class ContactController extends Controller
       $contact->channels()->sync($request->channels);
     }
 
-    return view('contacts.thanks');
+    return redirect()->route('thanks');
   }
 
   // public function store(Request $request)

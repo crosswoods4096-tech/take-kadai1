@@ -34,6 +34,7 @@ class ContactRequest extends FormRequest
             'address' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'content' => 'required|string|max:6000',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png,webp|max:2048',
         ];
     }
     public function messages()

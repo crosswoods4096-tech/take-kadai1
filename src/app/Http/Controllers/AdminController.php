@@ -44,6 +44,6 @@ class AdminController extends Controller
         // カテゴリが必要なら渡す
         $categories = Category::all();
 
-        return view('admin.contacts.index', compact('contacts', 'categories'));
+        return view('admin.contacts.list', compact('contacts', 'categories'));
     }
 }

@@ -19,15 +19,19 @@
         Contact Form
       </a>
     </div>
-    <form class="form" action="/logout" method="post">
-      @csrf
-      <button class="header-nav__button">ログアウト</button>
-    </form>
+
   </header>
+
 
   <main>
     @yield('content')
   </main>
+  <form class="form" action="/logout" method="post">
+    @csrf
+    <button class="header-nav__button">ログアウト</button>
+  </form>
+
 </body>
+
 
 </html>

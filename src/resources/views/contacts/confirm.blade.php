@@ -10,7 +10,7 @@
     <h2>お問い合わせ内容確認</h2>
   </div>
 
-  <form class="form" action="{{ url('/contacts') }}" method="POST" enctype="multipart/form-data">
+  <form class="form" action="{{ route('contacts.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     @php
@@ -122,4 +122,5 @@
 
   </form>
 </div>
+
 @endsection

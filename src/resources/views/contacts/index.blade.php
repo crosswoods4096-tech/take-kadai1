@@ -10,7 +10,7 @@
   <div class="contact-form__heading">
     <h2>お問い合わせ</h2>
   </div>
-  <form class="form" action="{{ route('contacts.confirm') }}" method="post" novalidate>
+  <form class="form" action="{{ route('contacts.confirm') }}" method="POST" enctype="multipart/form-data" novalidate>
 
     @csrf
     <div class="form__group">
