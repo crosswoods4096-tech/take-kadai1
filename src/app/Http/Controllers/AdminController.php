@@ -46,4 +46,11 @@ class AdminController extends Controller
 
         return view('admin.contacts.list', compact('contacts', 'categories'));
     }
+    public function images()
+    {
+        // Contact モデルの image カラムから画像一覧を取得
+        $images = Contact::whereNotNull('image')->orderBy('id', 'desc')->get();
+
+        return view('admin.images.index', compact('images'));
+    }
 }

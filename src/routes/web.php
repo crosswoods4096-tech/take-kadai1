@@ -31,3 +31,10 @@ Route::middleware('auth')->group(function () {
 Route::post('/register', [AdminAuthController::class, 'register'])->name('admin.register');
 Route::post('/login',    [AdminAuthController::class, 'login'])->name('admin.login');
 Route::post('/logout',   [AdminAuthController::class, 'logout'])->name('admin.logout');
+// 画像一覧ページ（AdminControllerで管理）
+Route::middleware('auth')->group(
+    function () {
+        Route::get('/admin/images', [App\Http\Controllers\AdminController::class, 'images'])
+            ->name('admin.images.index');
+    }
+);
