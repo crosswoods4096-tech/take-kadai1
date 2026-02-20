@@ -36,5 +36,7 @@ Route::middleware('auth')->group(
     function () {
         Route::get('/admin/images', [App\Http\Controllers\AdminController::class, 'images'])
             ->name('admin.images.index');
+        Route::get('/admin/images/{id}', [AdminController::class, 'imageDetail'])
+            ->name('admin.images.detail');
     }
 );

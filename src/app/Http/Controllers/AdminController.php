@@ -53,4 +53,11 @@ class AdminController extends Controller
 
         return view('admin.images.index', compact('images'));
     }
+    public function imageDetail($id)
+    {
+        // Contact モデルから該当データを取得
+        $contact = Contact::with('channels')->findOrFail($id);
+
+        return view('admin.image-detail', compact('contact'));
+    }
 }
