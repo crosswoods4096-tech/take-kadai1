@@ -34,6 +34,8 @@ class ContactRequest extends FormRequest
             'address' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'content' => 'required|string|max:6000',
+            'channels' => 'required|array',
+            'channels.*' => 'integer',
             'image' => 'nullable|file|mimes:jpg,jpeg,png,webp|max:2048',
         ];
     }
@@ -68,6 +70,7 @@ class ContactRequest extends FormRequest
             'content.required' => '問い合わせ内容を入力してください',
             'content.string' => '問い合わせ内容を文字列で入力してください',
             'content.max' => '問い合わせ内容を6000文字以下で入力してください',
+            'channels.required' => 'どこで知りましたかの項目は必ず一つは選択してください'
         ];
     }
 }

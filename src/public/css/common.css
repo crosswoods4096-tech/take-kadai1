@@ -1,16 +1,18 @@
 .header {
-  background: #02f906e8;
+    background: #02f906e8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header__inner {
-  margin: 0 auto;
-  padding: 20px 15px;
-  max-width: 1230px;
+    padding: 20px 15px;
+    max-width: 1230px;
 }
 
 .header__logo {
-  color: #4306fc;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 24px;
+    color: #4306fc;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
 }

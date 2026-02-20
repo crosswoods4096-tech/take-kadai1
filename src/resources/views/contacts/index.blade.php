@@ -43,9 +43,9 @@
         <span class="form__label--item">性別</span>
         <span class="form__label--required">※</span>
       </div>
-      <input type="radio" name="gender" value="1" checked />男性
-      <input type="radio" name="gender" value="2" />女性
-      <input type="radio" name="gender" value="3" />その他
+      <input type="radio" name="gender" value="1" {{ old('gender') == 1 ? 'checked' : '' }}> 男性
+      <input type="radio" name="gender" value="2" {{ old('gender') == 2 ? 'checked' : '' }}> 女性
+      <input type="radio" name="gender" value="3" {{ old('gender') == 3 ? 'checked' : '' }}> その他
     </div>
 
     <div class="form__group">
@@ -127,8 +127,10 @@
       </div>
       <select name="category_id">
         <option value="" disabled selected>選択してください</option>
+
         @foreach ($categories as $category)
-        <option value="{{ $category->id }}">
+        <option value="{{ $category->id }}"
+          {{ old('category_id') == $category->id ? 'selected' : '' }}>
           {{ $category->name }}
         </option>
         @endforeach
@@ -161,27 +163,32 @@
       <label class="form-label">どこで知りましたか（複数選択可）</label>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="channels[]" value="1" id="channel1">
+        <input class="form-check-input" type="checkbox" name="channels[]" value="1"
+          {{ in_array(1, old('channels', [])) ? 'checked' : '' }} id="channel1">
         <label class="form-check-label" for="channel1">自社サイト</label>
       </div>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="channels[]" value="2" id="channel2">
+        <input class="form-check-input" type="checkbox" name="channels[]" value="2"
+          {{ in_array(2, old('channels', [])) ? 'checked' : '' }} id="channel2">
         <label class="form-check-label" for="channel2">検索エンジン</label>
       </div>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="channels[]" value="3" id="channel3">
+        <input class="form-check-input" type="checkbox" name="channels[]" value="3"
+          {{ in_array(3, old('channels', [])) ? 'checked' : '' }} id="channel3">
         <label class="form-check-label" for="channel3">SNS</label>
       </div>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="channels[]" value="4" id="channel4">
+        <input class="form-check-input" type="checkbox" name="channels[]" value="4"
+          {{ in_array(4, old('channels', [])) ? 'checked' : '' }} id="channel4">
         <label class="form-check-label" for="channel4">テレビ・新聞</label>
       </div>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="channels[]" value="5" id="channel5">
+        <input class="form-check-input" type="checkbox" name="channels[]" value="5"
+          {{ in_array(5, old('channels', [])) ? 'checked' : '' }} id="channel5">
         <label class="form-check-label" for="channel5">友人・知人</label>
       </div>
 
@@ -196,9 +203,13 @@
       </div>
       <div class="form__group-content">
         <input type="file" name="image">
+
+        {{-- バリデーションエラーを赤字で表示 --}}
+        @error('image')
+        <p class="error-message">{{ $message }}</p>
+        @enderror
       </div>
     </div>
-
 
     <div class="form__button">
       <button class="form__button-submit" type="submit">送信</button>

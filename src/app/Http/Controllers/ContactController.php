@@ -71,23 +71,4 @@ class ContactController extends Controller
 
     return redirect()->route('thanks');
   }
-
-  // public function store(Request $request)
-  // {
-  //   $contact = [
-  //     'last_name' => $request->last_name,
-  //     'first_name' => $request->first_name,
-  //     'gender' => $request->gender,
-  //     'email' => $request->email,
-  //     'tel' => $request->tel_1 . $request->tel_2 . $request->tel_3,
-  //     'address' => $request->address,
-  //     'building' => $request->building,
-  //     'category_id' => $request->category_id,
-  //     'content' => $request->content,
-  //   ];
-
-
-  //   Contact::create($contact);
-  //   return view('thanks');
-  // }
 }
