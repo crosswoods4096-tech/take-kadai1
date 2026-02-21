@@ -60,4 +60,43 @@ class AdminController extends Controller
 
         return view('admin.image-detail', compact('contact'));
     }
+    public function show($id)
+    {
+        $contact = Contact::findOrFail($id);
+
+        return view('admin.images.show', compact('contact'));
+    }
+    public function update(Request $request, $id)
+    {
+        $contact = Contact::findOrFail($id);
+
+        // バリデーション
+        $validated = $request->validate([
+            'last_name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'content' => 'required|string',
+            'channels' => 'nullable|array',
+            'channels.*' => 'string',
+            'image' => 'nullable|file|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+
+        // チェックボックス（配列）をJSONで保存
+        $contact->channels = $request->channels ? json_encode($request->channels) : null;
+
+        // 画像がアップロードされた場合
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('images', 'public');
+            $contact->image = $path;
+        }
+
+        // その他の項目を更新
+        $contact->last_name = $request->last_name;
+        $contact->first_name = $request->first_name;
+        $contact->content = $request->content;
+
+        $contact->save();
+
+        return redirect()->route('admin.images.show', $id)
+            ->with('success', '更新が完了しました');
+    }
 }

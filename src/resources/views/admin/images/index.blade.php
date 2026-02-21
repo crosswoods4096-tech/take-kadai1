@@ -12,7 +12,7 @@
     ">
     @foreach ($images as $image)
     <div>
-        <a href="{{ route('admin.images.detail', $image->id) }}">
+        <a href="{{ route('admin.images.show', $image->id) }}">
             <img src="{{ asset('storage/' . $image->image) }}"
                 alt="uploaded image"
                 style="width: 300px; height: auto; border: 1px solid #ccc; padding: 5px;">
