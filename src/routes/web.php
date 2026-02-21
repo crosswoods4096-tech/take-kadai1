@@ -36,8 +36,7 @@ Route::middleware('auth')->group(
     function () {
         Route::get('/admin/images', [App\Http\Controllers\AdminController::class, 'images'])
             ->name('admin.images.index');
-        Route::get('/admin/images/{id}', [AdminController::class, 'imageDetail'])
-            ->name('admin.images.detail');
+
         // 詳細ページ修正機能
         Route::get('/admin/images/{id}', [AdminController::class, 'show'])->name('admin.images.show');
         Route::post('/admin/images/{id}/update', [AdminController::class, 'update'])->name('admin.images.update');

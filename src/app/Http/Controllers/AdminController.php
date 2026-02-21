@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Contact::with(['category', 'channels']);
+        $query = Contact::with(['category']);
 
         // 名前・メールアドレス（統合検索）
         if ($request->filled('keyword')) {
@@ -44,7 +44,7 @@ class AdminController extends Controller
         // カテゴリが必要なら渡す
         $categories = Category::all();
 
-        return view('admin.contacts.list', compact('contacts', 'categories'));
+        return view('admin.contacts.index', compact('contacts', 'categories'));
     }
     public function images()
     {
@@ -55,8 +55,7 @@ class AdminController extends Controller
     }
     public function imageDetail($id)
     {
-        // Contact モデルから該当データを取得
-        $contact = Contact::with('channels')->findOrFail($id);
+        $contact = Contact::findOrFail($id);
 
         return view('admin.image-detail', compact('contact'));
     }
@@ -80,8 +79,9 @@ class AdminController extends Controller
             'image' => 'nullable|file|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
-        // チェックボックス（配列）をJSONで保存
-        $contact->channels = $request->channels ? json_encode($request->channels) : null;
+        // チェックボックス（配列)
+        $contact->channels = $request->channels;
+
 
         // 画像がアップロードされた場合
         if ($request->hasFile('image')) {
@@ -96,7 +96,7 @@ class AdminController extends Controller
 
         $contact->save();
 
-        return redirect()->route('admin.images.show', $id)
+        return redirect()->route('admin.contacts.index')
             ->with('success', '更新が完了しました');
     }
 }

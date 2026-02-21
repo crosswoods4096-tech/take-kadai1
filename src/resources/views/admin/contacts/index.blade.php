@@ -82,12 +82,10 @@
                 <td>{{ Str::limit($contact->content, 30) }}</td>
                 {{-- ★ どこで知りましたか --}}
                 <td>
-                    @if ($contact->channels->isNotEmpty())
-                    @foreach ($contact->channels as $channel)
-                    <span class="badge bg-secondary">{{ $channel->name }}</span>
-                    @endforeach
+                    @if (!empty($contact->channels))
+                    {{ implode(', ', $contact->channels) }}
                     @else
-                    <span class="text-muted">未選択</span>
+                    なし
                     @endif
                 </td>
 
