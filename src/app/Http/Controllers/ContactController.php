@@ -62,12 +62,8 @@ class ContactController extends Controller
       'category_id' => $request->category_id,
       'content'     => $request->content,
       'image'       => $imagePath,   // ← 画像パスを保存
+      'channels'    => $request->channels ?? [],
     ]);
-
-    // 中間テーブル（channels）登録
-    if ($request->filled('channels')) {
-      $contact->channels()->sync($request->channels);
-    }
 
     return redirect()->route('thanks');
   }

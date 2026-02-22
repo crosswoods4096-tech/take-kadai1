@@ -29,6 +29,7 @@ class Contact extends Model
 
     protected $casts = [
         'channels' => 'array',
+
     ];
 
     public function getGenderLabelAttribute()

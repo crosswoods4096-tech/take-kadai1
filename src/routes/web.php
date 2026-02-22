@@ -40,5 +40,8 @@ Route::middleware('auth')->group(
         // 詳細ページ修正機能
         Route::get('/admin/images/{id}', [AdminController::class, 'show'])->name('admin.images.show');
         Route::post('/admin/images/{id}/update', [AdminController::class, 'update'])->name('admin.images.update');
+        // 画像詳細ページの削除
+        Route::delete('/admin/images/{id}', [AdminController::class, 'imageDelete'])
+            ->name('admin.images.delete');
     }
 );

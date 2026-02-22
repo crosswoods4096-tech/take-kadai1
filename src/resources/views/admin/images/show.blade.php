@@ -43,7 +43,7 @@
         <label>どこで知りましたか：</label><br>
 
         @php
-        $selected = json_decode($contact->channels, true) ?? [];
+        $selected = $contact->channels ?? [];
         @endphp
 
         <label>
@@ -93,4 +93,16 @@
 
     <button type="submit">修正する</button>
 </form>
+{{-- ▼▼ 削除ボタンフォームを追加 ▼▼ --}}
+<form action="{{ route('admin.images.delete', $contact->id) }}" method="POST" style="margin-top: 20px;">
+    @csrf
+    @method('DELETE')
+
+    <button type="submit"
+        onclick="return confirm('本当に削除しますか？');"
+        style="background-color: red; color: white; padding: 8px 16px; border: none; cursor: pointer;">
+        削除する
+    </button>
+</form>
+{{-- ▲▲ 削除ボタンフォームを追加 ▲▲ --}}
 @endsection

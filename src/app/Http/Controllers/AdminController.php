@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -46,6 +47,7 @@ class AdminController extends Controller
 
         return view('admin.contacts.index', compact('contacts', 'categories'));
     }
+
     public function images()
     {
         // Contact モデルの image カラムから画像一覧を取得
@@ -53,18 +55,21 @@ class AdminController extends Controller
 
         return view('admin.images.index', compact('images'));
     }
+
     public function imageDetail($id)
     {
         $contact = Contact::findOrFail($id);
 
         return view('admin.image-detail', compact('contact'));
     }
+
     public function show($id)
     {
         $contact = Contact::findOrFail($id);
 
         return view('admin.images.show', compact('contact'));
     }
+
     public function update(Request $request, $id)
     {
         $contact = Contact::findOrFail($id);
@@ -98,5 +103,22 @@ class AdminController extends Controller
 
         return redirect()->route('admin.contacts.index')
             ->with('success', '更新が完了しました');
+    }
+
+    public function imageDelete($id)
+    {
+        $image = Contact::findOrFail($id);
+
+        // 画像ファイル削除
+        if ($image->image) {
+            Storage::delete('public/' . $image->image);
+        }
+
+        // DBレコード削除
+        $image->delete();
+
+        // 問い合わせ一覧へリダイレクト
+        return redirect()->route('admin.contacts.index')
+            ->with('success', '画像とデータを削除しました');
     }
 }
