@@ -163,32 +163,38 @@
       <label class="form-label">どこで知りましたか（複数選択可）</label>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="channels[]" value="1"
-          {{ in_array(1, old('channels', [])) ? 'checked' : '' }} id="channel1">
+        <input type="checkbox" name="channels[]" value="site">
+
+        {{ in_array('site', old('channels', [])) ? 'checked' : '' }}
+
         <label class="form-check-label" for="channel1">自社サイト</label>
       </div>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="channels[]" value="2"
-          {{ in_array(2, old('channels', [])) ? 'checked' : '' }} id="channel2">
+        <input type="checkbox" name="channels[]" value="search">
+
+        {{ in_array('search', old('channels', [])) ? 'checked' : '' }}
         <label class="form-check-label" for="channel2">検索エンジン</label>
       </div>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="channels[]" value="3"
-          {{ in_array(3, old('channels', [])) ? 'checked' : '' }} id="channel3">
+        <input type="checkbox" name="channels[]" value="sns">
+
+        {{ in_array('sns', old('channels', [])) ? 'checked' : '' }}
         <label class="form-check-label" for="channel3">SNS</label>
       </div>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="channels[]" value="4"
-          {{ in_array(4, old('channels', [])) ? 'checked' : '' }} id="channel4">
+        <input type="checkbox" name="channels[]" value="media">
+
+        {{ in_array('media', old('channels', [])) ? 'checked' : '' }}
         <label class="form-check-label" for="channel4">テレビ・新聞</label>
       </div>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="channels[]" value="5"
-          {{ in_array(5, old('channels', [])) ? 'checked' : '' }} id="channel5">
+        <input type="checkbox" name="channels[]" value="friend">
+
+        {{ in_array('friend', old('channels', [])) ? 'checked' : '' }}
         <label class="form-check-label" for="channel5">友人・知人</label>
       </div>
 
