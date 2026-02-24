@@ -85,7 +85,7 @@ class AdminController extends Controller
         ]);
 
         // チェックボックス（配列)
-        $contact->channels = $request->channels;
+        $contact->channels()->sync($request->channels);
 
 
         // 画像がアップロードされた場合

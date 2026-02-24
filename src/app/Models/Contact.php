@@ -4,12 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Category;
 
 class Contact extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'last_name',
         'first_name',
@@ -24,14 +22,7 @@ class Contact extends Model
         'category_id',
         'content',
         'image',
-        'channels',
     ];
-
-    protected $casts = [
-        'channels' => 'array',
-
-    ];
-
     public function getGenderLabelAttribute()
     {
         return [
@@ -40,9 +31,12 @@ class Contact extends Model
             3 => 'その他',
         ][$this->gender] ?? '';
     }
-
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class, 'channel_contact');
     }
 }

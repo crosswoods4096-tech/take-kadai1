@@ -43,36 +43,36 @@
         <label>どこで知りましたか：</label><br>
 
         @php
-        $selected = $contact->channels ?? [];
+        $selected = $contact->channels->pluck('id')->toArray() ?? [];
         @endphp
 
         <label>
-            <input type="checkbox" name="channels[]" value="site"
-                {{ in_array('site', $selected) ? 'checked' : '' }}>
+            <input type="checkbox" name="channels[]" value="1"
+                {{ in_array('1', $selected) ? 'checked' : '' }}>
             自社サイト
         </label><br>
 
         <label>
-            <input type="checkbox" name="channels[]" value="search"
-                {{ in_array('search', $selected) ? 'checked' : '' }}>
+            <input type="checkbox" name="channels[]" value="2"
+                {{ in_array('2', $selected) ? 'checked' : '' }}>
             検索エンジン
         </label><br>
 
         <label>
-            <input type="checkbox" name="channels[]" value="sns"
-                {{ in_array('sns', $selected) ? 'checked' : '' }}>
+            <input type="checkbox" name="channels[]" value="3"
+                {{ in_array('3', $selected) ? 'checked' : '' }}>
             SNS
         </label><br>
 
         <label>
-            <input type="checkbox" name="channels[]" value="media"
-                {{ in_array('media', $selected) ? 'checked' : '' }}>
+            <input type="checkbox" name="channels[]" value="4"
+                {{ in_array('4', $selected) ? 'checked' : '' }}>
             テレビ・新聞
         </label><br>
 
         <label>
-            <input type="checkbox" name="channels[]" value="friend"
-                {{ in_array('friend', $selected) ? 'checked' : '' }}>
+            <input type="checkbox" name="channels[]" value="5"
+                {{ in_array('5', $selected) ? 'checked' : '' }}>
             友人・知人
         </label>
     </div>

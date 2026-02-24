@@ -82,41 +82,8 @@
                 <td>{{ Str::limit($contact->content, 30) }}</td>
                 {{-- ★ どこで知りましたか --}}
                 <td>
-                    @php
-                    // 日本語ラベル
-                    $channelLabels = [
-                    'site' => '自社サイト',
-                    'search' => '検索エンジン',
-                    'sns' => 'SNS',
-                    'media' => 'テレビ・新聞',
-                    'friend' => '友人・知人',
-                    ];
-
-                    // 1. null や空文字を安全に配列化
-                    $raw = $contact->channels;
-
-                    if (is_null($raw) || $raw === '') {
-                    $channels = [];
-                    } elseif (is_string($raw)) {
-                    // JSON文字列なら decode
-                    $decoded = json_decode($raw, true);
-                    $channels = is_array($decoded) ? $decoded : [$raw];
-                    } elseif (is_array($raw)) {
-                    $channels = $raw;
-                    } else {
-                    // 想定外の型はとりあえず配列化
-                    $channels = (array) $raw;
-                    }
-
-                    // 2. ネストがあっても flatten で一次元化
-                    $channels = collect($channels)->flatten()->toArray();
-
-                    // 3. 日本語ラベルへ変換
-                    $labels = array_map(fn($c) => $channelLabels[$c] ?? $c, $channels);
-                    @endphp
-
-                    @if (!empty($labels))
-                    {{ implode(', ', $labels) }}
+                    @if ($contact->channels->isNotEmpty())
+                    {{ implode(', ', $contact->channels->pluck('name')->toArray()) }}
                     @else
                     なし
                     @endif
